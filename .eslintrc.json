@@ -5,17 +5,27 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "airbnb-base"
-  ],
+  "extends": ["airbnb-base"],
   "parserOptions": {
     "ecmaVersion": 2020
   },
   "rules": {
     "linebreak-style": "off",
-    "no-underscore-dangle": "off",
+    "quotes": "off",
     "class-methods-use-this": "off",
     "no-unused-vars": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "no-underscore-dangle": "off",
+    "indent": "off",
+    "comma-dangle": "off",
+    "no-plusplus": "off",
+    "no-restricted-syntax": "off",
+    "implicit-arrow-linebreak": "off",
+    "radix": "off",
+    "operator-linebreak": "off",
+    "no-restricted-globals": "off",
+    "consistent-return": "off",
+    "no-prototype-builtins": "off",
+    "object-curly-newline": "off"
   }
 }
