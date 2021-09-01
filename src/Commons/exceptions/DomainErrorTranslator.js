@@ -1,5 +1,6 @@
 const InvariantError = require("./InvariantError");
 const AuthenticationError = require("./AuthenticationError");
+const NotFoundError = require("./NotFoundError");
 
 const DomainErrorTranslator = {
   translate(error) {
@@ -39,6 +40,15 @@ DomainErrorTranslator._directories = {
   ),
   "NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan title dan body"
+  ),
+  "NEW_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new AuthenticationError(
+    "Missing authentication"
+  ),
+  "NEW_COMMENT.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
+    "Missing authentication"
+  ),
+  "NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan content"
   ),
 };
 

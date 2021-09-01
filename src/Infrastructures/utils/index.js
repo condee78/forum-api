@@ -4,6 +4,13 @@ const mapDBToModelThread = ({ id, title, owner }) => ({
   owner,
 });
 
+const mapDBToModelComments = ({ id, content, owner }) => ({
+  id,
+  content,
+  owner,
+});
+
 module.exports = {
   mapDBToModelThread,
+  mapDBToModelComments,
 };
