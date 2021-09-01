@@ -10,11 +10,11 @@ class AddedThreadUseCase {
     const newThread = new NewThread(useCasePayload);
     const accessToken = useCaseAuthentication.replace("Bearer ", "");
 
-    const { username } = await this._authenticationTokenManager.decodePayload(
+    const { id } = await this._authenticationTokenManager.decodePayload(
       accessToken
     );
 
-    return this._threadRepository.addThread(newThread, username);
+    return this._threadRepository.addThread(newThread, id);
   }
 }
 
