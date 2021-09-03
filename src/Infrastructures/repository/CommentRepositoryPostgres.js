@@ -3,7 +3,7 @@ const NotFoundError = require("../../Commons/exceptions/NotFoundError");
 const AuthorizationError = require("../../Commons/exceptions/AuthorizationError");
 const CommentRepository = require("../../Domains/comments/CommentRepository");
 
-const { mapDBToModelComments } = require("../utils");
+const { mapDBToModelComment, mapDBToModelCommentDetail } = require("../utils");
 
 class CommentRepositoryPostgres extends CommentRepository {
   constructor(pool, idGenerator) {
@@ -28,7 +28,28 @@ class CommentRepositoryPostgres extends CommentRepository {
     if (!result.rows[0].id) {
       throw new InvariantError("Comment gagal ditambahkan");
     }
-    return result.rows.map(mapDBToModelComments)[0];
+    return result.rows.map(mapDBToModelComment)[0];
+  }
+
+  async getCommentByThreadId(threadId) {
+    const query = {
+      text: `
+      SELECT comments.id, users.username, comments.date, comments.content, comments.is_delete  
+      FROM comments
+      LEFT JOIN users ON users.id = comments.owner
+      WHERE comments.thread_id = $1
+      ORDER BY comments.date`,
+      values: [threadId],
+    };
+    const result = await this._pool.query(query);
+
+    if (!result.rowCount) {
+      throw new NotFoundError("Comment tidak ditemukan");
+    }
+
+    const mappedResult = result.rows.map(mapDBToModelCommentDetail);
+
+    return mappedResult;
   }
 
   async deleteComment(commentId) {

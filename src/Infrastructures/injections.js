@@ -22,6 +22,7 @@ const RefreshAuthenticationUseCase = require("../Applications/use_case/RefreshAu
 const LogoutUserUseCase = require("../Applications/use_case/LogoutUserUseCase");
 
 const AddThreadUseCase = require("../Applications/use_case/AddThreadUseCase");
+const DetailThreadUseCase = require("../Applications/use_case/DetailThreadUseCase");
 const AddCommentUseCase = require("../Applications/use_case/AddCommentUseCase");
 const DeleteCommentUseCase = require("../Applications/use_case/DeleteCommentUseCase");
 
@@ -43,6 +44,10 @@ const useCaseInstanceContainer = {
     threadRepository: serviceInstanceContainer.threadRepository,
     authenticationTokenManager:
       serviceInstanceContainer.authenticationTokenManager,
+  }),
+  detailThreadUseCase: new DetailThreadUseCase({
+    threadRepository: serviceInstanceContainer.threadRepository,
+    commentRepository: serviceInstanceContainer.commentRepository,
   }),
   addCommentUseCase: new AddCommentUseCase({
     commentRepository: serviceInstanceContainer.commentRepository,
