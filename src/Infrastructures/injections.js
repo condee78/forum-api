@@ -23,6 +23,7 @@ const LogoutUserUseCase = require("../Applications/use_case/LogoutUserUseCase");
 
 const AddThreadUseCase = require("../Applications/use_case/AddThreadUseCase");
 const AddCommentUseCase = require("../Applications/use_case/AddCommentUseCase");
+const DeleteCommentUseCase = require("../Applications/use_case/DeleteCommentUseCase");
 
 const serviceInstanceContainer = {
   userRepository: new UserRepositoryPostgres(pool, nanoid),
@@ -44,6 +45,12 @@ const useCaseInstanceContainer = {
       serviceInstanceContainer.authenticationTokenManager,
   }),
   addCommentUseCase: new AddCommentUseCase({
+    commentRepository: serviceInstanceContainer.commentRepository,
+    threadRepository: serviceInstanceContainer.threadRepository,
+    authenticationTokenManager:
+      serviceInstanceContainer.authenticationTokenManager,
+  }),
+  deleteCommentUseCase: new DeleteCommentUseCase({
     commentRepository: serviceInstanceContainer.commentRepository,
     threadRepository: serviceInstanceContainer.threadRepository,
     authenticationTokenManager:

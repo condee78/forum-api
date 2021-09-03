@@ -50,6 +50,9 @@ DomainErrorTranslator._directories = {
   "NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan content"
   ),
+  "DELETE_COMMENT.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
+    "Missing authentication"
+  ),
 };
 
 module.exports = DomainErrorTranslator;

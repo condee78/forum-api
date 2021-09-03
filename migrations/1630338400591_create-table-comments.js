@@ -22,6 +22,10 @@ exports.up = (pgm) => {
       type: "VARCHAR(50)",
       notNull: true,
     },
+    is_delete: {
+      type: "VARCHAR(1)",
+      notNull: true,
+    },
   });
 
   pgm.addConstraint(
