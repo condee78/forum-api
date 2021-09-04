@@ -41,6 +41,15 @@ DomainErrorTranslator._directories = {
   "NEW_THREAD.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan title dan body"
   ),
+  "NEW_THREAD.NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "title dan body harus string"
+  ),
+  "NEW_THREAD.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
+    "Missing authentication"
+  ),
+  "NEW_THREAD.NOT_CONTAIN_BEARER_AUTHENTICATION": new AuthenticationError(
+    "Missing bearer authentication"
+  ),
   "NEW_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new AuthenticationError(
     "Missing authentication"
   ),

@@ -7,8 +7,8 @@ class AddedThreadUseCase {
   }
 
   async execute(useCasePayload, useCaseAuthentication) {
-    const newThread = new NewThread(useCasePayload);
-    const accessToken = useCaseAuthentication.replace("Bearer ", "");
+    const newThread = new NewThread(useCasePayload, useCaseAuthentication);
+    const accessToken = newThread.authentication;
 
     const { id } = await this._authenticationTokenManager.decodePayload(
       accessToken
