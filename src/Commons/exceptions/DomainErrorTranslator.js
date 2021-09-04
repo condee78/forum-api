@@ -50,8 +50,20 @@ DomainErrorTranslator._directories = {
   "NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan content"
   ),
+  "DELETE_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan thread ID dan comment ID"
+  ),
+  "DELETE_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "Thread ID dan Comment ID harus string"
+  ),
   "DELETE_COMMENT.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
     "Missing authentication"
+  ),
+  "DELETE_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new AuthenticationError(
+    "Missing authentication"
+  ),
+  "DELETE_COMMENT.NOT_CONTAIN_BEARER_AUTHENTICATION": new AuthenticationError(
+    "Missing bearer authentication"
   ),
 };
 
