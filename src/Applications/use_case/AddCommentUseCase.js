@@ -12,19 +12,20 @@ class AddedCommentUseCase {
   }
 
   async execute(useCasePayload, useCaseAuthentication, useCaseParams) {
-    const newComment = new NewComment(useCasePayload, useCaseAuthentication);
-    const { threadId } = useCaseParams;
-    const accessToken = useCaseAuthentication.includes("Bearer")
-      ? useCaseAuthentication.replace("Bearer ", "")
-      : "";
+    const newComment = new NewComment(
+      useCasePayload,
+      useCaseParams,
+      useCaseAuthentication
+    );
+    const accessToken = newComment.authentication;
 
     const { id } = await this._authenticationTokenManager.decodePayload(
       accessToken
     );
 
-    await this._threadRepository.verifyAvailableThread(threadId);
+    await this._threadRepository.verifyAvailableThread(newComment.threadId);
 
-    return this._commentRepository.addComment(newComment, id, threadId);
+    return this._commentRepository.addComment(newComment, id);
   }
 }
 

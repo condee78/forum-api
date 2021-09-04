@@ -50,14 +50,29 @@ DomainErrorTranslator._directories = {
   "NEW_THREAD.NOT_CONTAIN_BEARER_AUTHENTICATION": new AuthenticationError(
     "Missing bearer authentication"
   ),
-  "NEW_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new AuthenticationError(
-    "Missing authentication"
+  "NEW_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new InvariantError(
+    "tidak dapat membuat comment baru karena properti yang dibutuhkan tidak ada"
+  ),
+  "NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan content"
+  ),
+  "NEW_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "content harus string"
+  ),
+  "NEW_COMMENT.PARAMS_NOT_CONTAIN_ANY_PROPERTY": new InvariantError(
+    "tidak dapat membuat comment baru karena parameter yang dibutuhkan tidak ada"
+  ),
+  "NEW_COMMENT.PARAMS_NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan parameter Thread ID"
+  ),
+  "NEW_COMMENT.PARAMS_NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "Parameter Thread ID harus string"
   ),
   "NEW_COMMENT.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
     "Missing authentication"
   ),
-  "NEW_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
-    "harus mengirimkan content"
+  "NEW_COMMENT.NOT_CONTAIN_BEARER_AUTHENTICATION": new AuthenticationError(
+    "Missing bearer authentication"
   ),
   "DELETE_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
     "harus mengirimkan thread ID dan comment ID"

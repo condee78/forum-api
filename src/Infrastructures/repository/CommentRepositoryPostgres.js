@@ -12,8 +12,8 @@ class CommentRepositoryPostgres extends CommentRepository {
     this._idGenerator = idGenerator;
   }
 
-  async addComment(newComment, owner, threadId) {
-    const { content } = newComment;
+  async addComment(newComment, owner) {
+    const { content, threadId } = newComment;
     const id = `comment-${this._idGenerator()}`;
     const date = new Date().toISOString();
     const isDelete = "0";
