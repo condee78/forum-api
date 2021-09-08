@@ -89,6 +89,28 @@ DomainErrorTranslator._directories = {
   "DELETE_COMMENT.NOT_CONTAIN_BEARER_AUTHENTICATION": new AuthenticationError(
     "Missing bearer authentication"
   ),
+  "NEW_REPLY_COMMENT.NOT_CONTAIN_ANY_PROPERTY": new InvariantError(
+    "tidak dapat membalas comment baru karena properti yang dibutuhkan tidak ada"
+  ),
+  "NEW_REPLY_COMMENT.NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan content"
+  ),
+  "NEW_REPLY_COMMENT.NOT_MEET_DATA_TYPE_SPECIFICATION": new InvariantError(
+    "reply content harus string"
+  ),
+  "NEW_REPLY_COMMENT.PARAMS_NOT_CONTAIN_ANY_PROPERTY": new InvariantError(
+    "tidak dapat membalas comment baru karena parameter yang dibutuhkan tidak ada"
+  ),
+  "NEW_REPLY_COMMENT.PARAMS_NOT_CONTAIN_NEEDED_PROPERTY": new InvariantError(
+    "harus mengirimkan parameter Thread ID dan Comment ID"
+  ),
+  "NEW_REPLY_COMMENT.PARAMS_NOT_MEET_DATA_TYPE_SPECIFICATION":
+    new InvariantError("Parameter Thread ID dan Comment ID harus string"),
+  "NEW_REPLY_COMMENT.NOT_CONTAIN_ANY_AUTHENTICATION": new AuthenticationError(
+    "Missing authentication"
+  ),
+  "NEW_REPLY_COMMENT.NOT_CONTAIN_BEARER_AUTHENTICATION":
+    new AuthenticationError("Missing bearer authentication"),
 };
 
 module.exports = DomainErrorTranslator;

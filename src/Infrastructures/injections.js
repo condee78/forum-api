@@ -14,6 +14,7 @@ const JwtTokenManager = require("./security/JwtTokenManager");
 
 const ThreadRepositoryPostgres = require("./repository/ThreadRepositoryPostgres");
 const CommentRepositoryPostgres = require("./repository/CommentRepositoryPostgres");
+const ReplyCommentRepositoryPostgres = require("./repository/ReplyCommentRepositoryPostgres");
 
 // use case
 const AddUserUseCase = require("../Applications/use_case/AddUserUseCase");
@@ -25,11 +26,13 @@ const AddThreadUseCase = require("../Applications/use_case/AddThreadUseCase");
 const DetailThreadUseCase = require("../Applications/use_case/DetailThreadUseCase");
 const AddCommentUseCase = require("../Applications/use_case/AddCommentUseCase");
 const DeleteCommentUseCase = require("../Applications/use_case/DeleteCommentUseCase");
+const AddReplyCommentUseCase = require("../Applications/use_case/AddReplyCommentUseCase");
 
 const serviceInstanceContainer = {
   userRepository: new UserRepositoryPostgres(pool, nanoid),
   threadRepository: new ThreadRepositoryPostgres(pool, nanoid),
   commentRepository: new CommentRepositoryPostgres(pool, nanoid),
+  replyCommentRepository: new ReplyCommentRepositoryPostgres(pool, nanoid),
   authenticationRepository: new AuthenticationRepositoryPostgres(pool),
   encryptionHelper: new BcryptEncryptionHelper(bcrypt),
   authenticationTokenManager: new JwtTokenManager(Jwt.token),
@@ -61,7 +64,13 @@ const useCaseInstanceContainer = {
     authenticationTokenManager:
       serviceInstanceContainer.authenticationTokenManager,
   }),
-
+  addReplyCommentUseCase: new AddReplyCommentUseCase({
+    commentRepository: serviceInstanceContainer.commentRepository,
+    threadRepository: serviceInstanceContainer.threadRepository,
+    replyCommentRepository: serviceInstanceContainer.replyCommentRepository,
+    authenticationTokenManager:
+      serviceInstanceContainer.authenticationTokenManager,
+  }),
   loginUserUseCase: new LoginUserUseCase({
     authenticationRepository: serviceInstanceContainer.authenticationRepository,
     authenticationTokenManager:

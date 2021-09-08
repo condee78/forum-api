@@ -42,9 +42,33 @@ const mapDBToModelCommentDetail = (comment) =>
         content: comment.content,
       };
 
+const mapDBToModelReplyComment = ({ id, content, owner }) => ({
+  id,
+  content,
+  owner,
+});
+
+// eslint-disable-next-line no-confusing-arrow
+const mapDBToModelReplyCommentDetail = (replyComment) =>
+  replyComment.is_delete === "1"
+    ? {
+        id: replyComment.id,
+        content: `**komentar telah dihapus**`,
+        date: replyComment.date,
+        username: replyComment.username,
+      }
+    : {
+        id: replyComment.id,
+        content: replyComment.content,
+        date: replyComment.date,
+        username: replyComment.username,
+      };
+
 module.exports = {
   mapDBToModelThread,
   mapDBToModelThreadDetail,
   mapDBToModelComment,
   mapDBToModelCommentDetail,
+  mapDBToModelReplyComment,
+  mapDBToModelReplyCommentDetail,
 };
