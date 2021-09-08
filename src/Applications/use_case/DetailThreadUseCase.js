@@ -1,9 +1,10 @@
 const DetailThread = require("../../Domains/threads/entities/DetailThread");
 
 class DetailThreadUseCase {
-  constructor({ threadRepository, commentRepository }) {
+  constructor({ threadRepository, commentRepository, replyCommentRepository }) {
     this._threadRepository = threadRepository;
     this._commentRepository = commentRepository;
+    this._replyCommentRepository = replyCommentRepository;
   }
 
   async execute(usecaseParams) {
@@ -17,6 +18,12 @@ class DetailThreadUseCase {
       detailThread.threadId
     );
 
+    const replies =
+      await this._replyCommentRepository.getReplyCommentByCommentId(
+        comment[0].id
+      );
+
+    comment[0].replies = replies;
     thread.comments = comment;
 
     return thread;

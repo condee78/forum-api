@@ -33,12 +33,14 @@ const mapDBToModelCommentDetail = (comment) =>
         id: comment.id,
         username: comment.username,
         date: comment.date,
+        replies: comment.replies,
         content: `**komentar telah dihapus**`,
       }
     : {
         id: comment.id,
         username: comment.username,
         date: comment.date,
+        replies: comment.replies,
         content: comment.content,
       };
 

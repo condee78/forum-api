@@ -51,6 +51,7 @@ const useCaseInstanceContainer = {
   detailThreadUseCase: new DetailThreadUseCase({
     threadRepository: serviceInstanceContainer.threadRepository,
     commentRepository: serviceInstanceContainer.commentRepository,
+    replyCommentRepository: serviceInstanceContainer.replyCommentRepository,
   }),
   addCommentUseCase: new AddCommentUseCase({
     commentRepository: serviceInstanceContainer.commentRepository,
