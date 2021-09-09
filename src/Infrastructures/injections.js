@@ -27,6 +27,7 @@ const DetailThreadUseCase = require("../Applications/use_case/DetailThreadUseCas
 const AddCommentUseCase = require("../Applications/use_case/AddCommentUseCase");
 const DeleteCommentUseCase = require("../Applications/use_case/DeleteCommentUseCase");
 const AddReplyCommentUseCase = require("../Applications/use_case/AddReplyCommentUseCase");
+const DeleteReplyCommentUseCase = require("../Applications/use_case/DeleteReplyCommentUseCase");
 
 const serviceInstanceContainer = {
   userRepository: new UserRepositoryPostgres(pool, nanoid),
@@ -66,6 +67,13 @@ const useCaseInstanceContainer = {
       serviceInstanceContainer.authenticationTokenManager,
   }),
   addReplyCommentUseCase: new AddReplyCommentUseCase({
+    commentRepository: serviceInstanceContainer.commentRepository,
+    threadRepository: serviceInstanceContainer.threadRepository,
+    replyCommentRepository: serviceInstanceContainer.replyCommentRepository,
+    authenticationTokenManager:
+      serviceInstanceContainer.authenticationTokenManager,
+  }),
+  deleteReplyCommentUseCase: new DeleteReplyCommentUseCase({
     commentRepository: serviceInstanceContainer.commentRepository,
     threadRepository: serviceInstanceContainer.threadRepository,
     replyCommentRepository: serviceInstanceContainer.replyCommentRepository,

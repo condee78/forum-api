@@ -55,7 +55,7 @@ const mapDBToModelReplyCommentDetail = (replyComment) =>
   replyComment.is_delete === "1"
     ? {
         id: replyComment.id,
-        content: `**komentar telah dihapus**`,
+        content: `**balasan telah dihapus**`,
         date: replyComment.date,
         username: replyComment.username,
       }

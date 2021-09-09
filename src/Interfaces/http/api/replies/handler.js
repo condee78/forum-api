@@ -1,8 +1,11 @@
 class RepliesHandler {
-  constructor({ addReplyCommentUseCase }) {
+  constructor({ addReplyCommentUseCase, deleteReplyCommentUseCase }) {
     this._addReplyCommentUseCase = addReplyCommentUseCase;
+    this._deleteReplyCommentUseCase = deleteReplyCommentUseCase;
 
     this.postReplyCommentHandler = this.postReplyCommentHandler.bind(this);
+    this.deleteReplyCommentByIdHandler =
+      this.deleteReplyCommentByIdHandler.bind(this);
   }
 
   async postReplyCommentHandler(request, h) {
@@ -19,6 +22,19 @@ class RepliesHandler {
       },
     });
     response.code(201);
+    return response;
+  }
+
+  async deleteReplyCommentByIdHandler(request, h) {
+    await this._deleteReplyCommentUseCase.execute(
+      request.headers.authorization,
+      request.params
+    );
+
+    const response = h.response({
+      status: "success",
+    });
+    response.code(200);
     return response;
   }
 }
