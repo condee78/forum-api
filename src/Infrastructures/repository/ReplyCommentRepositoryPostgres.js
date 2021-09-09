@@ -47,7 +47,7 @@ class ReplyCommentRepositoryPostgres extends ReplyCommentRepository {
     const result = await this._pool.query(query);
 
     if (!result.rowCount) {
-      throw new NotFoundError("Reply Comment tidak ditemukan");
+      return undefined;
     }
 
     const mappedResult = result.rows.map(mapDBToModelReplyCommentDetail);
